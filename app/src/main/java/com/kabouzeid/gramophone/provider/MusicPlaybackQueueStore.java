@@ -153,12 +153,14 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
 
         final int NUM_PROCESS = 20;
         int position = 0;
+        Song song;
+        ContentValues values;
         while (position < queue.size()) {
             database.beginTransaction();
             try {
                 for (int i = position; i < queue.size() && i < position + NUM_PROCESS; i++) {
-                    Song song = queue.get(i);
-                    ContentValues values = new ContentValues(4);
+                    song = queue.get(i);
+                    values = new ContentValues(4);
 
                     values.put(BaseColumns._ID, song.id);
                     values.put(AudioColumns.TITLE, song.title);

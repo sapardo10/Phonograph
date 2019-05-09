@@ -20,9 +20,10 @@ public class Lyrics {
     }
 
     public static Lyrics parse(Song song, String data) {
+        Lyrics lyrics;
         for (Class<? extends Lyrics> format : Lyrics.FORMATS) {
             try {
-                Lyrics lyrics = format.newInstance().setData(song, data);
+                lyrics = format.newInstance().setData(song, data);
                 if (lyrics.isValid()) return lyrics.parse(false);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -32,9 +33,10 @@ public class Lyrics {
     }
 
     public static boolean isSynchronized(String data) {
+        Lyrics lyrics;
         for (Class<? extends Lyrics> format : Lyrics.FORMATS) {
             try {
-                Lyrics lyrics = format.newInstance().setData(null, data);
+                lyrics = format.newInstance().setData(null, data);
                 if (lyrics.isValid()) return true;
             } catch (Exception e) {
                 e.printStackTrace();

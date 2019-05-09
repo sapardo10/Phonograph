@@ -47,7 +47,7 @@ public class LastFMRestClient {
     public static Cache createDefaultCache(Context context) {
         File cacheDir = new File(context.getCacheDir().getAbsolutePath(), "/okhttp-lastfm/");
         if (cacheDir.mkdirs() || cacheDir.isDirectory()) {
-            return new Cache(cacheDir, 1024 * 1024 * 10);
+            return new Cache(cacheDir, 10485760/*1024 * 1024 * 10*/);
         }
         return null;
     }

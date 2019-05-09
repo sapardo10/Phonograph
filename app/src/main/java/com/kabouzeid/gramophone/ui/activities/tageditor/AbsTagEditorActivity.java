@@ -296,11 +296,13 @@ public abstract class AbsTagEditorActivity extends AbsBaseActivity {
                 int counter = 0;
                 boolean wroteArtwork = false;
                 boolean deletedArtwork = false;
+                AudioFile audioFile;
+                Tag tag;
                 for (String filePath : info.filePaths) {
                     publishProgress(++counter, info.filePaths.size());
                     try {
-                        AudioFile audioFile = AudioFileIO.read(new File(filePath));
-                        Tag tag = audioFile.getTagOrCreateAndSetDefault();
+                        audioFile = AudioFileIO.read(new File(filePath));
+                        tag = audioFile.getTagOrCreateAndSetDefault();
 
                         if (info.fieldKeyValueMap != null) {
                             for (Map.Entry<FieldKey, String> entry : info.fieldKeyValueMap.entrySet()) {

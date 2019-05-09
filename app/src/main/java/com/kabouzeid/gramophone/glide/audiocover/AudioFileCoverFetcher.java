@@ -73,8 +73,9 @@ public class AudioFileCoverFetcher implements DataFetcher<InputStream> {
 
         // Method 2: look for album art in external files
         File parent = new File(path).getParentFile();
+        File cover;
         for (String fallback : FALLBACKS) {
-            File cover = new File(parent, fallback);
+            cover = new File(parent, fallback);
             if (cover.exists()) {
                 return stream = new FileInputStream(cover);
             }

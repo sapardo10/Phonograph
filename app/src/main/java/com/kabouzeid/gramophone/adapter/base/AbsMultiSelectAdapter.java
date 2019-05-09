@@ -52,8 +52,9 @@ public abstract class AbsMultiSelectAdapter<VH extends RecyclerView.ViewHolder, 
     protected void checkAll() {
         if (cabHolder != null) {
             checked.clear();
+            I identifier;
             for (int i = 0; i < getItemCount(); i++) {
-                I identifier = getIdentifier(i);
+                identifier = getIdentifier(i);
                 if (identifier != null) {
                     checked.add(identifier);
                 }

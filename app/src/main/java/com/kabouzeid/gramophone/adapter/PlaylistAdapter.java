@@ -140,8 +140,9 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
     protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull ArrayList<Playlist> selection) {
         switch (menuItem.getItemId()) {
             case R.id.action_delete_playlist:
+                Playlist playlist;
                 for (int i = 0; i < selection.size(); i++) {
-                    Playlist playlist = selection.get(i);
+                    playlist = selection.get(i);
                     if (playlist instanceof AbsSmartPlaylist) {
                         AbsSmartPlaylist absSmartPlaylist = (AbsSmartPlaylist) playlist;
                         ClearSmartPlaylistDialog.create(absSmartPlaylist).show(activity.getSupportFragmentManager(), "CLEAR_PLAYLIST_" + absSmartPlaylist.name);

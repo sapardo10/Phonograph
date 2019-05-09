@@ -12,9 +12,9 @@ public abstract class AbsSynchronizedLyrics extends Lyrics {
         time += offset + AbsSynchronizedLyrics.TIME_OFFSET_MS;
 
         int lastLineTime = lines.keyAt(0);
-
+        int lineTime;
         for (int i = 0; i < lines.size(); i++) {
-            int lineTime = lines.keyAt(i);
+            lineTime = lines.keyAt(i);
 
             if (time >= lineTime) {
                 lastLineTime = lineTime;
@@ -41,9 +41,9 @@ public abstract class AbsSynchronizedLyrics extends Lyrics {
 
         if (valid) {
             StringBuilder sb = new StringBuilder();
-
+            String line;
             for (int i = 0; i < lines.size(); i++) {
-                String line = lines.valueAt(i);
+                line = lines.valueAt(i);
                 sb.append(line).append("\r\n");
             }
 

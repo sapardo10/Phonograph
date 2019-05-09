@@ -18,8 +18,9 @@ public class LastFMUtil {
 
     public static String getLargestArtistImageUrl(List<Artist.Image> images) {
         Map<ImageSize, String> imageUrls = new HashMap<>();
+        ImageSize size;
         for (Artist.Image image : images) {
-            ImageSize size = null;
+            size = null;
             final String attribute = image.getSize();
             if (attribute == null) {
                 size = ImageSize.UNKNOWN;

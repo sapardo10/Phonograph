@@ -239,8 +239,9 @@ public class BreadCrumbLayout extends HorizontalScrollView implements View.OnCli
     }
 
     void invalidateActivatedAll() {
+        Crumb crumb;
         for (int i = 0; i < mCrumbs.size(); i++) {
-            Crumb crumb = mCrumbs.get(i);
+            crumb = mCrumbs.get(i);
             invalidateActivated(mChildFrame.getChildAt(i), mActive == mCrumbs.indexOf(crumb), false, i < mCrumbs.size() - 1).setText(crumb.getTitle());
         }
     }
@@ -253,8 +254,9 @@ public class BreadCrumbLayout extends HorizontalScrollView implements View.OnCli
     public boolean trim(String path, boolean dir) {
         if (!dir) return false;
         int index = -1;
+        File fi;
         for (int i = mCrumbs.size() - 1; i >= 0; i--) {
-            File fi = mCrumbs.get(i).getFile();
+            fi = mCrumbs.get(i).getFile();
             if (fi.getPath().equals(path)) {
                 index = i;
                 break;
@@ -300,8 +302,9 @@ public class BreadCrumbLayout extends HorizontalScrollView implements View.OnCli
 
                 // Restore scroll positions saved before clearing
                 if (mOldCrumbs != null) {
+                    Crumb old;
                     for (Iterator<Crumb> iterator = mOldCrumbs.iterator(); iterator.hasNext(); ) {
-                        Crumb old = iterator.next();
+                        old = iterator.next();
                         if (old.equals(crumb)) {
                             crumb.setScrollPosition(old.getScrollPosition());
                             iterator.remove(); // minimize number of linear passes by removing un-used crumbs from history

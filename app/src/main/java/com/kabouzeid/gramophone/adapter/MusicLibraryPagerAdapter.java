@@ -40,11 +40,12 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
 
     public void setCategoryInfos(@NonNull ArrayList<CategoryInfo> categoryInfos) {
         mHolderList.clear();
-
+        MusicFragments fragment;
+        Holder holder;
         for (CategoryInfo categoryInfo : categoryInfos) {
             if (categoryInfo.visible) {
-                MusicFragments fragment = MusicFragments.valueOf(categoryInfo.category.toString());
-                Holder holder = new Holder();
+                fragment = MusicFragments.valueOf(categoryInfo.category.toString());
+                holder = new Holder();
                 holder.mClassName = fragment.getFragmentClass().getName();
                 holder.title = mContext.getResources()
                         .getString(categoryInfo.category.stringRes)
@@ -67,8 +68,9 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getItemPosition(@NonNull Object fragment) {
+        Holder holder;
         for (int i = 0, size = mHolderList.size(); i < size; i++) {
-            Holder holder = mHolderList.get(i);
+            holder = mHolderList.get(i);
             if (holder.mClassName.equals(fragment.getClass().getName())) {
                 return i;
             }
@@ -128,16 +130,17 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
         if (mFragmentArray.size() == 0) return;
 
         HashMap<String, WeakReference<Fragment>> mappings = new HashMap<>(mFragmentArray.size());
-
+        WeakReference<Fragment> ref;
+        Fragment fragment;
         for (int i = 0, size = mFragmentArray.size(); i < size; i++) {
-            WeakReference<Fragment> ref = mFragmentArray.valueAt(i);
-            Fragment fragment = ref.get();
+            ref = mFragmentArray.valueAt(i);
+            fragment = ref.get();
             if (fragment != null) {
                 mappings.put(fragment.getClass().getName(), ref);
             }
         }
         for (int i = 0, size = mHolderList.size(); i < size; i++) {
-            WeakReference<Fragment> ref = mappings.get(mHolderList.get(i).mClassName);
+            ref = mappings.get(mHolderList.get(i).mClassName);
             if (ref != null) {
                 mFragmentArray.put(i, ref);
             } else {

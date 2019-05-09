@@ -615,8 +615,9 @@ public class FoldersFragment extends AbsMainActivityFragment implements MainActi
                     if (isCancelled() || checkCallbackReference() == null) return null;
 
                     paths = new String[files.size()];
+                    File f;
                     for (int i = 0; i < files.size(); i++) {
-                        File f = files.get(i);
+                        f = files.get(i);
                         paths[i] = FileUtil.safeGetCanonicalPath(f);
 
                         if (isCancelled() || checkCallbackReference() == null) return null;
